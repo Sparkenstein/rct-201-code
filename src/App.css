@@ -1,0 +1,50 @@
+.item {
+  border: 1px solid #ddd8d8;
+  border-radius: 7px;
+  padding: 10px;
+  /* margin-top: 10px; */
+  margin: 10px;
+  width: 400px;
+  transition: all 0.2s;
+}
+
+.item:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transform: scale(1.04);
+}
+
+.item span {
+  display: flex;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 10px; */
+  padding-inline: 15px;
+  border-bottom: 1px solid #ddd8d8;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  gap: 15px;
+  padding: 10px;
+}
+
+.review {
+  border: 1px solid springgreen;
+  padding-block: 10px;
+  margin-top: 15px;
+}
+
+.review span {
+  display: flex;
+  margin-left: 10px;
+}
+
+.review span:nth-child(1) {
+  font-weight: 700;
+}
