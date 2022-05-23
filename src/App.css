@@ -48,3 +48,29 @@
 .review span:nth-child(1) {
   font-weight: 700;
 }
+
+.checkoutWrapper {
+  display: flex;
+  width: 400px;
+  border: 1px solid rgb(85, 72, 72);
+  flex-direction: column;
+}
+
+.checkoutItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+}
+
+.hr {
+  width: 400px;
+  float: left;
+  margin-top: 20px;
+}
+
+.totalContainer {
+  margin-top: 30px;
+  float: left;
+  margin-left: -400px;
+}

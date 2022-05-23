@@ -47,17 +47,21 @@ function CardDetails() {
   return (
     <div className="product">
       <span>
-        <h4>{data.product_name}</h4>
+        <h4 className="detailsTitle">{data.product_name}</h4>
       </span>{" "}
-      <img src="https://picsum.photos/600/400 " alt="" />
-      <span>Price: ${data.price}</span>
-      <span>{data.desc}</span>
+      <img
+        className="detailsImage"
+        src="https://picsum.photos/600/400 "
+        alt=""
+      />
+      <span className="detailsPrice">Price: ${data.price}</span>
+      <span className="detailsPrice">{data.desc}</span>
       <div>
         <h5>Reviews:</h5>
         {data.reviews?.map((r) => (
           <div className="review">
-            <span>{r.by}</span>
-            <span>{r.review}</span>
+            <span className="reviewBy">{r.by}</span>
+            <span className="reviewDesc">{r.review}</span>
           </div>
         ))}
       </div>
@@ -69,7 +73,7 @@ function Body() {
   const data = useSelector((store) => store.productsList);
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div className="container" style={{ display: "flex", flexWrap: "wrap" }}>
       {data.map((d) => (
         <Card key={d.id} d={d} />
       ))}
@@ -92,39 +96,24 @@ function Checkout() {
       });
   }, []);
   if (cartIds.length < 1) {
-    return <div> Nothing in cart </div>;
+    return <div className="emptyCart">Nothing in cart</div>;
   }
 
   return (
     <div style={{ padding: 10 }}>
       <h4>Checkout:</h4>
-      <div
-        style={{
-          display: "flex",
-          width: "400px",
-          // justifyContent: "space-between",
-          border: "1px solid red",
-          flexDirection: "column",
-        }}
-      >
+      <div className="checkoutWrapper">
         {data.map((i) => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: "10px",
-              padding: "10px",
-            }}
-          >
+          <div className="checkoutItem">
             <span>{i.product_name}</span>
             <span>${i.price}</span>
           </div>
         ))}
       </div>
-      <hr style={{ width: "400px", float: "left", marginTop: "20px" }} />
-      <div style={{ marginTop: "30px", float: "left", marginLeft: "-400px" }}>
+      <hr className="hr" />
+      <div className="totalContainer">
         <span>Total:</span>
-        <span>{data.reduce((a, c) => a + c.price, 0)}</span>
+        <span className="total">{data.reduce((a, c) => a + c.price, 0)}</span>
       </div>
     </div>
   );
@@ -143,17 +132,16 @@ function Nav() {
         </h3>
       </span>
       {location.pathname !== "/checkout" && (
-        <div>
-          <span>Cart: {cartCount}</span>
-          <span>
-            <button
-              onClick={() => {
-                nav("/checkout");
-              }}
-            >
-              Checkout
-            </button>
-          </span>
+        <div className="navCartStatus">
+          Cart: <span className="navCartCount">{cartCount}</span>
+          <button
+            className="navCartCheckout"
+            onClick={() => {
+              nav("/checkout");
+            }}
+          >
+            Checkout
+          </button>
         </div>
       )}
     </div>
@@ -166,17 +154,20 @@ function Card({ d }) {
 
   return (
     <div className="item">
-      <img src="https://picsum.photos/200/300 " alt="" />
+      <img src="https://picsum.photos/200/300" className="productImage" />
       <span>
-        <Link to={`/${d.id}`}>{d.product_name}</Link>
+        <Link className="productLink" to={`/${d.id}`}>
+          {d.product_name}
+        </Link>
       </span>
-      <span>{d.category}</span>
-      <span>${d.price}</span>
-      <span>Ratings: {d.rating}</span>
+      <span className="productCategory">{d.category}</span>
+      <span className="productPrice">${d.price}</span>
+      <span className="productRating">Ratings: {d.rating}</span>
       {cartIds.includes(d.id) ? (
         "Item Already in cart"
       ) : (
         <button
+          className="productAddtoCart"
           onClick={() => {
             dispatch(addProduct(d.id));
           }}
